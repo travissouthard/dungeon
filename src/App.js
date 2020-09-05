@@ -7,16 +7,31 @@ const width = 20
 const height = 15
 const tiles = []
 for (let i = 0; i < (width * height); i++) {
-  tiles.push("tile")
+  if (i === 9 || i === 10 || i === 289 || i === 290) {
+    tiles.push("door")
+  } else if (i < 21 || i % 20 === 0 || i % 20 === width - 1 || i >= 281) {
+    tiles.push("wall")
+  } else {
+    tiles.push("ground")
+  }
 }
 
 class App extends Component {
-  
+  state = {
+    currentRoom: [],
+  }
   render() {
     return (
       <>
         <h1>Dungeon Game</h1>
         <Screen tiles={tiles}/>
+        <div id="key">
+          <div className="tile wall">wall</div>
+          <div className="tile treasure">tr</div>
+          <div className="tile ground">gr</div>
+          <div className="tile npc">npc</div>
+          <div className="tile door">door</div>
+        </div>
       </>
     )
   }

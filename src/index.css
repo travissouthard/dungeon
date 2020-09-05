@@ -3,12 +3,12 @@ h1 {
 }
 
 main {
-  background-color: lightgray;
   width: 640px;
   height: 480px;
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
+  border: 1px solid black;
 }
 
 .tile {
@@ -17,5 +17,40 @@ main {
   text-align: center;
   line-height: 32px;
   vertical-align: center;
-  border: 1px solid white;
+  border: 1px solid gray;
+}
+
+.wall {
+  background-color: tan;
+}
+
+.treasure {
+  background-color: gold;
+}
+
+.ground {
+  background-color: lightgray;
+}
+
+.npc {
+  background-color: aquamarine;
+}
+
+.door {
+  background-color: black;
+  color: white;
+}
+
+#key {
+  width: 640px;
+  height: 32px;
+  margin: 16px auto;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+#key .tile {
+  margin: 0 16px;
 }
