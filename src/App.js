@@ -11,15 +11,14 @@ for (let i = 0; i < (width * height); i++) {
     tiles.push("door")
   } else if (i < 21 || i % 20 === 0 || i % 20 === width - 1 || i >= 281) {
     tiles.push("wall")
+  } else if (i === 129) {
+    tiles.push("npc")
   } else {
     tiles.push("ground")
   }
 }
 
 class App extends Component {
-  state = {
-    currentRoom: [],
-  }
   render() {
     return (
       <>
