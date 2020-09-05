@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+main {
+  background-color: lightgray;
+  width: 640px;
+  height: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tile {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 32px;
+  vertical-align: center;
+  border: 1px solid white;
+}
