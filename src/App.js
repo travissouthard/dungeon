@@ -20,6 +20,23 @@ for (let i = 0; i < (boardSize); i++) {
 }
 
 class App extends Component {
+  state = {
+    playerLocation: 167,
+  }
+  handleKeyPress(event) {
+    let key = event.keyCode
+    if (key === 87 || key === 65 || key === 83 || key === 68) {
+      console.log("Player moved!")
+    } else if (key === 74){
+      console.log("Player interacted!")
+    }
+  }
+  componentDidMount() {
+    window.addEventListener("keydown", this.handleKeyPress)
+    return () => {
+      window.removeEventListener("keydown", this.handleKeyPress)
+    }
+  }
   render() {
     return (
       <>

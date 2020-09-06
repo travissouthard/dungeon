@@ -5,7 +5,7 @@ export default class Screen extends Component {
         return (
             <main>
                 {this.props.tiles.map((tile, i) => {
-                    return <div className={"tile " + tile} key={i}>{i}</div>
+                    return <div className={"tile " + tile} key={i} id={i}>{i}</div>
                 })}
             </main>
         )
