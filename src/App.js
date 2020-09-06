@@ -21,7 +21,12 @@ for (let i = 0; i < (boardSize); i++) {
 
 class App extends Component {
   state = {
-    playerLocation: 167,
+    player: {
+      direction: "up",
+      location: 167,
+      mainAction: "interact",
+      secAction: "inspect"
+    }
   }
   handleKeyPress(event) {
     let key = event.keyCode
