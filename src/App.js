@@ -22,21 +22,48 @@ for (let i = 0; i < (boardSize); i++) {
 class App extends Component {
   state = {
     player: {
+      inventory: [],
       direction: "up",
       location: 167,
       mainAction: "interact",
       secAction: "inspect"
     }
   }
-  handleKeyPress(event) {
+  placePlayer = () => {
+    let here = document.getElementById(this.state.player.location).innerHTML
+    document.getElementById(this.state.player.location).innerHTML = "🧍🏽"
+    console.log("Player is now at tile " + here + ".")
+    console.log("Player is facing " + this.state.player.direction)
+  }
+  move = (direction) => {
+    console.log("Player moved " + direction)
+    const currentLocation = this.state.player.location
+    document.getElementById(currentLocation).innerHTML = ""
+    let newLocation = 0
+    if (direction === "up") {
+      newLocation = currentLocation - width
+    }
+    this.setState({
+      player: {
+        inventory: [],
+        direction: direction,
+        location: newLocation,
+        mainAction: "interact",
+        secAction: "inspect"
+      }
+    })
+    this.placePlayer()
+  }
+  handleKeyPress = (event) => {
     let key = event.keyCode
-    if (key === 87 || key === 65 || key === 83 || key === 68) {
-      console.log("Player moved!")
+    if (key === 87) {
+      this.move("up")
     } else if (key === 74){
       console.log("Player interacted!")
     }
   }
   componentDidMount() {
+    this.placePlayer()
     window.addEventListener("keydown", this.handleKeyPress)
     return () => {
       window.removeEventListener("keydown", this.handleKeyPress)
