@@ -42,6 +42,12 @@ class App extends Component {
     let newLocation = 0
     if (direction === "up") {
       newLocation = currentLocation - width
+    } else if (direction === "left") {
+      newLocation = currentLocation - 1
+    } else if (direction === "down") {
+      newLocation = currentLocation + width
+    } else if (direction === "right") {
+      newLocation = currentLocation + 1
     }
     this.setState({
       player: {
@@ -58,8 +64,12 @@ class App extends Component {
     let key = event.keyCode
     if (key === 87) {
       this.move("up")
-    } else if (key === 74){
-      console.log("Player interacted!")
+    } else if (key === 65){
+      this.move("left")
+    } else if (key === 83){
+      this.move("down")
+    } else if (key === 68){
+      this.move("right")
     }
   }
   componentDidMount() {
