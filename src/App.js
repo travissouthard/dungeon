@@ -3,15 +3,16 @@ import './App.css';
 import Screen from "./components/Screen"
 
 // Variables to create board
-const width = 20
-const height = 15
+const width = 16
+const height = 12
+const boardSize = width * height
 const tiles = []
-for (let i = 0; i < (width * height); i++) {
-  if (i === 9 || i === 10 || i === 289 || i === 290) {
+for (let i = 0; i < (boardSize); i++) {
+  if (i === (width/2 - 1) || i === (width/2) || i === (boardSize - width/2 - 1) || i === (boardSize - width/2)) {
     tiles.push("door")
-  } else if (i < 21 || i % 20 === 0 || i % 20 === width - 1 || i >= 281) {
+  } else if (i < width || i % width === 0 || i % width === width - 1 || i >= (boardSize - width)) {
     tiles.push("wall")
-  } else if (i === 129) {
+  } else if (i === 71) {
     tiles.push("npc")
   } else {
     tiles.push("ground")
