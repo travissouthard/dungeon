@@ -53,9 +53,6 @@ class App extends Component {
     const currentLocation = this.state.player.location
     document.getElementById(currentLocation).innerHTML = ""
     let newLocation = currentLocation
-    let ground = (element) => {
-      return element === "ground"
-    }
     if (direction === "up" && this.checkTile(direction)[1] === "ground") {
       newLocation = currentLocation - width
     } else if (direction === "left" && this.checkTile(direction)[1] === "ground") {
@@ -67,11 +64,8 @@ class App extends Component {
     }
     this.setState({
       player: {
-        inventory: [],
         direction: direction,
         location: newLocation,
-        mainAction: "interact",
-        secAction: "inspect"
       }
     })
     this.placePlayer()
