@@ -29,24 +29,40 @@ class App extends Component {
       secAction: "inspect"
     }
   }
+
   placePlayer = () => {
-    let here = document.getElementById(this.state.player.location).innerHTML
     document.getElementById(this.state.player.location).innerHTML = "🧍🏽"
-    console.log("Player is now at tile " + here + ".")
-    console.log("Player is facing " + this.state.player.direction)
   }
+
+  checkTile = (direction) => {
+    let tileIndex
+    if (direction === "up") {
+      tileIndex = this.state.player.location - width
+    } else if (direction === "left") {
+      tileIndex = this.state.player.location - 1
+    } else if (direction === "down") {
+      tileIndex = this.state.player.location + width
+    } else if (direction === "right") {
+      tileIndex = this.state.player.location + 1
+    }
+    return document.getElementById(tileIndex).classList
+  }
+
   move = (direction) => {
     console.log("Player moved " + direction)
     const currentLocation = this.state.player.location
     document.getElementById(currentLocation).innerHTML = ""
-    let newLocation = 0
-    if (direction === "up") {
+    let newLocation = currentLocation
+    let ground = (element) => {
+      return element === "ground"
+    }
+    if (direction === "up" && this.checkTile(direction)[1] === "ground") {
       newLocation = currentLocation - width
-    } else if (direction === "left") {
+    } else if (direction === "left" && this.checkTile(direction)[1] === "ground") {
       newLocation = currentLocation - 1
-    } else if (direction === "down") {
+    } else if (direction === "down" && this.checkTile(direction)[1] === "ground") {
       newLocation = currentLocation + width
-    } else if (direction === "right") {
+    } else if (direction === "right" && this.checkTile(direction)[1] === "ground") {
       newLocation = currentLocation + 1
     }
     this.setState({
@@ -60,6 +76,7 @@ class App extends Component {
     })
     this.placePlayer()
   }
+
   handleKeyPress = (event) => {
     let key = event.keyCode
     if (key === 87) {
@@ -72,6 +89,7 @@ class App extends Component {
       this.move("right")
     }
   }
+
   componentDidMount() {
     this.placePlayer()
     window.addEventListener("keydown", this.handleKeyPress)
