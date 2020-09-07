@@ -97,11 +97,8 @@ class App extends Component {
         <h1>Dungeon Game</h1>
         <Screen tiles={tiles}/>
         <div id="key">
-          <div className="tile wall">wall</div>
-          <div className="tile treasure">tr</div>
-          <div className="tile ground">gr</div>
-          <div className="tile npc">npc</div>
-          <div className="tile door">door</div>
+          <h3>How to play:</h3>
+          <p>WASD to move, J &amp; K to interact</p>
         </div>
       </>
     )
