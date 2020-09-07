@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   placePlayer = () => {
-    document.getElementById(this.state.player.location).innerHTML = "🧍🏽"
+    document.getElementById(this.state.player.location).innerHTML = <a href={"./images/player-" + this.state.player.direction + ".png"}></a>
   }
 
   checkTile = (direction) => {
@@ -49,7 +49,6 @@ class App extends Component {
   }
 
   move = (direction) => {
-    console.log("Player moved " + direction)
     const currentLocation = this.state.player.location
     document.getElementById(currentLocation).innerHTML = ""
     let newLocation = currentLocation
