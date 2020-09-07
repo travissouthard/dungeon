@@ -31,7 +31,8 @@ class App extends Component {
   }
 
   placePlayer = () => {
-    document.getElementById(this.state.player.location).innerHTML = "<img src='./images/player-up.png' alt=''></img>"
+    let playerImage = "<img src='./images/player-" + this.state.player.direction + ".png' alt=''></img>"
+    document.getElementById(this.state.player.location).innerHTML = playerImage
   }
 
   checkTile = (direction) => {
