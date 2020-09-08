@@ -25,8 +25,11 @@ class App extends Component {
       inventory: [],
       direction: "up",
       location: 167,
-      mainAction: "interact",
-      secAction: "inspect"
+    },
+    npc: {
+      location: 71,
+      direction: "down",
+      response: "Oh hello, traveler!",
     }
   }
 
@@ -71,6 +74,12 @@ class App extends Component {
     this.placePlayer()
   }
 
+  interact = (direction) => {
+    if (this.checkTile(direction)[1] === "npc") {
+      console.log(this.state.npc.response)
+    }
+  }
+
   handleKeyPress = (event) => {
     let key = event.keyCode
     if (key === 87) {
@@ -81,6 +90,8 @@ class App extends Component {
       this.move("down")
     } else if (key === 68){
       this.move("right")
+    } else if (key === 74){
+      this.interact(this.state.player.direction)
     }
   }
 
