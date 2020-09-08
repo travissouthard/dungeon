@@ -3,8 +3,8 @@ import './App.css';
 import Screen from "./components/Screen"
 
 // Variables to create board
-const width = 16
-const height = 12
+const width = 10
+const height = 10
 const boardSize = width * height
 const tiles = []
 for (let i = 0; i < (boardSize); i++) {
@@ -12,8 +12,10 @@ for (let i = 0; i < (boardSize); i++) {
     tiles.push("door")
   } else if (i < width || i % width === 0 || i % width === width - 1 || i >= (boardSize - width)) {
     tiles.push("wall")
-  } else if (i === 71) {
+  } else if (i === 44) {
     tiles.push("npc")
+  } else if (i === 55) {
+    tiles.push("treasure")
   } else {
     tiles.push("ground")
   }
@@ -24,13 +26,14 @@ class App extends Component {
     player: {
       inventory: [],
       direction: "up",
-      location: 167,
+      location: 84,
     },
     npc: {
-      location: 71,
+      location: 44,
       direction: "down",
       response: "Oh hello, traveler!",
-    }
+    },
+    treasure: [],
   }
 
   placePlayer = () => {
@@ -77,6 +80,12 @@ class App extends Component {
   interact = (direction) => {
     if (this.checkTile(direction)[1] === "npc") {
       console.log(this.state.npc.response)
+    } else if (this.checkTile(direction)[1] === "treasure") {
+      if (this.state.treasure.length === 0) {
+        console.log("Nothing here.")
+      } else {
+        console.log("You picked up a " + this.state.treasure[0] + "!")
+      }
     }
   }
 
