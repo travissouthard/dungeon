@@ -33,7 +33,10 @@ class App extends Component {
       direction: "down",
       response: "Oh hello, traveler!",
     },
-    treasure: [],
+    treasure: {
+      location: 55,
+      name: "sword"
+    },
   }
 
   placePlayer = () => {
@@ -77,14 +80,26 @@ class App extends Component {
     this.placePlayer()
   }
 
-  interact = (direction) => {
-    if (this.checkTile(direction)[1] === "npc") {
+  interact = (player) => {
+    if (this.checkTile(player.direction)[1] === "npc") {
       console.log(this.state.npc.response)
-    } else if (this.checkTile(direction)[1] === "treasure") {
-      if (this.state.treasure.length === 0) {
+    } else if (this.checkTile(player.direction)[1] === "treasure") {
+      if (this.state.treasure.name === "") {
         console.log("Nothing here.")
       } else {
-        console.log("You picked up a " + this.state.treasure[0] + "!")
+        console.log("You picked up a " + this.state.treasure.name + "!")
+        let newInventory = this.state.treasure.name
+        this.setState({
+          player: {
+            inventory: [newInventory],
+            direction: player.direction,
+            location: player.location
+          },
+          treasure: {
+            location: 55,
+            name: ""
+          }
+        })
       }
     }
   }
@@ -100,7 +115,7 @@ class App extends Component {
     } else if (key === 68){
       this.move("right")
     } else if (key === 74){
-      this.interact(this.state.player.direction)
+      this.interact(this.state.player)
     }
   }
 
