@@ -73,6 +73,7 @@ class App extends Component {
     }
     this.setState({
       player: {
+        inventory: this.state.player.inventory,
         direction: direction,
         location: newLocation,
       }
